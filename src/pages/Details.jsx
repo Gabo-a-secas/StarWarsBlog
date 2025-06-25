@@ -17,17 +17,36 @@ export const Details = () => {
   }, [type, uid]);
 
   if (loading) {
-    return <div className="container mt-5"><h2>Cargando detalles...</h2></div>;
+    return (
+      <div className="container mt-5">
+        <h2>Cargando detalles...</h2>
+      </div>
+    );
   }
 
   if (!item) {
-    return <div className="container mt-5"><h2>No se encontraron datos</h2></div>;
+    return (
+      <div className="container mt-5">
+        <h2>No se encontraron datos</h2>
+      </div>
+    );
   }
 
   return (
     <div className="container mt-5">
       <h1 className="mb-3">{item.properties.name}</h1>
+
+      <div className="text-center mb-4">
+        <img
+          src={`https://raw.githubusercontent.com/breatheco-de/swapi-images/master/public/images/${type}/${uid}.jpg`}
+          className="img-fluid rounded"
+          alt={item.properties.name}
+          style={{ maxWidth: "400px" }}
+        />
+      </div>
+
       <p><strong>Descripción:</strong> {item.description}</p>
+
       <div className="row">
         {Object.entries(item.properties).map(([key, value]) => (
           <div key={key} className="col-md-4 mb-2">
